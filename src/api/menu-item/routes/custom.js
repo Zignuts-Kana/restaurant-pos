@@ -9,6 +9,14 @@ module.exports ={
       }
     },
     {
+      method: "GET",
+      path: "/menu-items/:id",
+      handler: "menu-item.findOne",
+      config:{
+        policies:['global::is-authenticated']
+      }
+    },
+    {
       method: "POST",
       path: "/menu-items",
       handler: "menu-item.create",

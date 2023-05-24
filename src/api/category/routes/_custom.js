@@ -5,7 +5,15 @@ module.exports = {
       path: "/categories",
       handler: "category.find",
       config: {
-        policies: ["api::category.is-category"],
+        policies: ["global::is-authenticated"],
+      },
+    },
+    {
+      method: "GET",
+      path: "/categories/:id",
+      handler: "category.findOne",
+      config: {
+        policies: ["global::is-authenticated"],
       },
     },
     {

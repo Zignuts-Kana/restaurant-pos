@@ -2,15 +2,31 @@ module.exports ={
   routes:[
     {
       method: "POST",
-      path: "/restaurant",
+      path: "/restaurants",
       handler: "restaurant.create",
       config:{
         policies:['global::is-authenticated']
       }
     },
     {
+      method: "GET",
+      path: "/restaurants",
+      handler: "restaurant.find",
+      config:{
+        policies:['global::is-authenticated']
+      }
+    },
+    {
+      method: "GET",
+      path: "/restaurants/:id",
+      handler: "restaurant.findOne",
+      config:{
+        policies:['global::is-authenticated']
+      }
+    },
+    {
       method: "PUT",
-      path: "/restaurant/:id",
+      path: "/restaurants/:id",
       handler: "restaurant.update",
       config:{
         policies:['global::is-authenticated']
@@ -18,7 +34,7 @@ module.exports ={
     },
     {
       method: "DELETE",
-      path: "/restaurant/:id",
+      path: "/restaurants/:id",
       handler: "restaurant.delete",
       config:{
         policies:['global::is-authenticated']

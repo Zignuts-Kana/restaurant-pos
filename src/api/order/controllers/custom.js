@@ -44,48 +44,4 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       return ctx.badRequest(error);
     }
   },
-
-  async customFind(ctx) {
-    try {
-      const userId = ctx.state.user.id;
-      const findAll = await strapi.db.query("api::order.order").findMany({
-        where: { customer: userId },
-      });
-      return findAll;
-    } catch (error) {
-      return ctx.badRequest(error);
-    }
-  },
-
-  async customFindForRestaurant(ctx) {
-    try {
-      const userId = ctx.request.params.id;
-      const findAll = await strapi.db.query("api::order.order").findMany({
-        where: { customer: userId },
-        populate: true,
-      });
-      return findAll;
-    } catch (error) {
-      return ctx.badRequest(error);
-    }
-  },
-
-  async customUpdate(ctx) {
-    try {
-      const userId = ctx.state.user.id;
-      const orderId = ctx.request.params.id;
-      const body = ctx.request.body.data;
-
-      const updateOrder = await strapi.db.query("api::order.order").update({
-        where: { id: orderId, customer: userId },
-        data: body,
-      });
-      if (!updateOrder) {
-        return ctx.badRequest(error);
-      }
-      return updateOrder;
-    } catch (error) {
-      return ctx.badRequest(error);
-    }
-  },
 }));
